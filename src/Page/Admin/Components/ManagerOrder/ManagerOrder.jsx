@@ -78,9 +78,11 @@ function ManagerOrder() {
         const statusText = {
             pending: 'Chờ xử lý',
             completed: 'Đã xử lý',
+            return_requested: 'Yêu cầu trả sách',
             delivered: 'Đã giao hàng',
             returned: 'Đã trả sách',
             cancelled: 'Đã hủy',
+            return_requested: 'orange',
         };
         return statusText[status.toLowerCase()];
     };
@@ -168,6 +170,9 @@ function ManagerOrder() {
                     <Select.Option value="cancelled">
                         <Tag color="red">Đã hủy</Tag>
                     </Select.Option>
+                    <Select.Option value="return_requested">
+                        <Tag color="orange">Yêu cầu trả sách</Tag>
+                    </Select.Option>
                 </Select>
             ),
         },
@@ -233,10 +238,11 @@ function ManagerOrder() {
                         >
                             <Select.Option value="all">Tất cả trạng thái</Select.Option>
                             <Select.Option value="pending">Chờ xử lý</Select.Option>
-                            <Select.Option value="completed">Đã xử lý</Select.Option>
+                            <Select.Option value="return_requested">Đã xử lý</Select.Option>
                             <Select.Option value="delivered">Đã giao hàng</Select.Option>
                             <Select.Option value="returned">Đã trả sách</Select.Option>
                             <Select.Option value="cancelled">Đã hủy</Select.Option>
+                            <Select.Option value="return_requested">Yêu cầu trả sách</Select.Option>
                         </Select>
                     </Col>
                     <Col span={8}>

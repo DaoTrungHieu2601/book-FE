@@ -30,11 +30,9 @@ function CartUser() {
     const [selectedItems, setSelectedItems] = useState([]);
 
     useEffect(() => {
-        // reset khi dataCart thay đổi
         setSelectedItems([]);
     }, [dataCart]);
 
-    // cập nhật số lượng
     const updateQuantity = async (id, quantity) => {
         try {
             await requestUpdateQuantity({ productId: id, quantity });
@@ -44,7 +42,6 @@ function CartUser() {
         }
     };
 
-    // xóa sản phẩm
     const removeItem = async (id) => {
         try {
             await requestDeleteItem({ productId: id });
@@ -199,7 +196,7 @@ function CartUser() {
 
                     {/* Tóm tắt đơn hàng */}
                     <Col xs={24} lg={8}>
-                        <div className="sticky top-6">
+                        <div className="top-6">
                             <Card className="shadow-lg rounded-xl border-0" bodyStyle={{ padding: '24px' }}>
                                 <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
                                     <GiftOutlined className="text-blue-600" />

@@ -112,8 +112,7 @@ function Checkout() {
                                                         SL: {item.quantity}
                                                     </p>
                                                     <p className="text-xs text-gray-500 mb-1">
-                                                        {rentalDays} ngày ×{' '}
-                                                        {item.product.price.toLocaleString()}đ
+                                                        {item.quantity} × {item.product.price.toLocaleString()}đ × {rentalDays} ngày
                                                     </p>
                                                     <div className="text-red-600 font-semibold">
                                                         {itemTotal.toLocaleString()}đ

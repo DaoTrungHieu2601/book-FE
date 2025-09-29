@@ -10,10 +10,8 @@ import HeroSlider from "./HeroSlider";
 import RankingModule from "./RankingModule";
 
 const colorOptions = [
-    // giữ nguyên config màu bạn có
 ];
 
-// parse giá an toàn
 const parsePrice = (p) => {
     if (p == null) return 0;
     if (typeof p === "number") return p;
@@ -22,7 +20,6 @@ const parsePrice = (p) => {
     return Number.isFinite(num) ? num : 0;
 };
 
-// sort logic
 const applySort = (products = [], order) => {
     const sorted = [...products];
     switch (order) {
@@ -62,7 +59,6 @@ function HomePage() {
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 12;
 
-    // fetch sp theo category
     useEffect(() => {
         const fetchProductsByCategory = async () => {
             setLoading(true);
@@ -70,7 +66,6 @@ function HomePage() {
                 const response = await requestGetProducts({ category: selectedCategory });
                 const productsData = response?.metadata || [];
 
-                // hot/popular
                 const sortedByPopularity = [...productsData].sort(
                     (a, b) => (b?.sold || 0) - (a?.sold || 0)
                 );
@@ -79,7 +74,6 @@ function HomePage() {
                     sortedByPopularity.filter((p) => (p?.sold || 0) > 0).slice(0, 10)
                 );
 
-                // luôn reset về newest khi đổi category
                 setAllProducts(productsData);
                 setSortOrder("newest");
                 setCurrentPage(1);
@@ -94,7 +88,6 @@ function HomePage() {
         fetchProductsByCategory();
     }, [selectedCategory]);
 
-    // re-sort khi allProducts hoặc sortOrder thay đổi
     useEffect(() => {
         if (!Array.isArray(allProducts)) {
             setFilteredProducts([]);
@@ -105,12 +98,10 @@ function HomePage() {
         setCurrentPage(1);
     }, [allProducts, sortOrder]);
 
-    // scroll to top khi đổi page/category
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, [currentPage, selectedCategory]);
 
-    // style category
     useEffect(() => {
         if (category && category.length > 0) {
             const styled = category.map((cat, index) => ({
@@ -223,8 +214,8 @@ function HomePage() {
                                 <button
                                     onClick={() => setSelectedCategory(null)}
                                     className={`text-sm text-left p-2 rounded-md transition-colors ${!selectedCategory
-                                            ? "bg-blue-600 text-white font-semibold"
-                                            : "hover:bg-gray-100 text-gray-700"
+                                        ? "bg-blue-600 text-white font-semibold"
+                                        : "hover:bg-gray-100 text-gray-700"
                                         }`}
                                 >
                                     Tất cả
@@ -234,8 +225,8 @@ function HomePage() {
                                         key={cat._id}
                                         onClick={() => setSelectedCategory(cat._id)}
                                         className={`text-sm text-left p-2 rounded-md transition-colors truncate ${selectedCategory === cat._id
-                                                ? "bg-blue-600 text-white font-semibold"
-                                                : "hover:bg-gray-100 text-gray-700"
+                                            ? "bg-blue-600 text-white font-semibold"
+                                            : "hover:bg-gray-100 text-gray-700"
                                             }`}
                                     >
                                         {cat.nameCategory}

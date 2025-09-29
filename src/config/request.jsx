@@ -88,8 +88,8 @@ export const requestCreateProduct = async (data) => {
     return res.data;
 };
 
-export const requestGetProducts = async () => {
-    const res = await request.get('/api/product/get-products');
+export const requestGetProducts = async (params = {}) => {
+    const res = await request.get('/api/product/get-products', { params });
     return res.data;
 };
 
